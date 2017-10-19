@@ -1,0 +1,13 @@
+{
+  "name": "Quiz",
+  "verion": "0.0.1",
+  "private": true,
+  "requires": true,
+  "dependencies": {
+    "bootstrap": "3.3.7",
+    "express": "4.16.2",
+    "jquery": "3.2.1",
+    "mustache": "2.3.0",
+    "ws": "3.2.0"
+  }
+}
