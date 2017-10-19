@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link rel='stylesheet' href='bootstrap/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='css/quiz.css'>
+    <script src="jquery/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="mustache/mustache.min.js"></script>
+    <script src="client.js"></script>
+  </head>
+  <body>
+    <div class="container text-center" style="background: lightgrey">
+      <h1>Quiz</h1>
+      <p>zum 60ten Geburtstag</p> 
+    </div>
+
+    <section id="questions" style="display:none">
+      <div class="text-center">
+        <h3 id="question" data-question-id>## Frage</h3>
+      </div>
+      <div class="container">
+        <div class="quiz" id="choices" data-toggle="buttons">
+          <!-- render choices-templates -->
+        </div>
+      </div>
+      
+      <hr>
+
+      <div class="container">
+        <button type="button" class="btn btn-lg btn-primary btn-block" onclick="answer()">Abschicken</button>
+      </div>
+    </section>
+
+
+    <section id="wait" class="text-center">
+      <h3>Vielen Dank f&uuml;r Ihre Eingabe</h3>
+      <p>Die n&auml;chste Frage wird gleich freigeschaltet!</p>
+    </section>
+
+    <!-- choices-template -->
+    <script id="choices-template" type="text/template">
+      {{#choices}}
+          <label class="element-animation1 btn btn-lg btn-primary btn-block" onclick="colorize(this)">
+            <span class="btn-label"><i class="glyphicon glyphicon-asterisk"></i></span> 
+            <input type="radio" name="choice" value="{{.}}"> 
+            <div class="choice_label">
+            {{.}}
+            </div>
+          </label>
+      {{/choices}}
+    </script>
+
+  </body>
+</html>

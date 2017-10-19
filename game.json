@@ -1,0 +1,24 @@
+{
+  "options": {},
+  "questions": [
+    {
+      "id":"FRAGE1",
+      "question":"Wann war die erste Mondlandung?",
+      "choices": [
+        "foo", "bar", "foobar", "42"
+      ],
+      "correct":"42"
+    },
+    {
+      "id":"FRAGE2",
+      "question":"Wann war die erste Mondlandung? - Teil 2",
+      "choices": [
+        "foo", "bar", "foobar", "42"
+      ],
+      "correct":"42"
+    }
+  ],
+  "outro": {
+    
+  }
+}
