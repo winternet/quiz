@@ -1,11 +1,12 @@
 var ws;
 var question;
 var choice;
-
+var options;
 
 $(function() {
-
-  console.log('trying to establish websocket connection')
+  console.log('trying to get options...')
+  $.ajax({})
+  console.log('trying to establish websocket connection...')
   //TODO this will not work remote
   ws = new WebSocket('ws://localhost:8999');
   //ws = new WebSocket('ws://192.168.0.114:8999')
@@ -23,8 +24,8 @@ var renderQuestion = function(q) {
     showWait(q)
     return;
   }
-  
-  showQuestions()
+
+  showQuestions(q)
   $('#question').html(q.question)
   var template = $('#choices-template').html();
   var choices = Mustache.to_html(template, q);
@@ -67,19 +68,36 @@ var answer = function(element) {
   }
 }
 
-var showQuestions = function() {
+var showQuestions = function(question) {
   $('#questions').show()
   $('#wait').hide()
+  $('.progress').css('visibility', 'visible')
   //clean cookies to enable step back
   Object.keys(Cookies.get()).forEach(function(k) {Cookies.remove(k)})
+  countdown(showWait.bind(null, question), options)
 }
 
-var showWait = function() {
+var showWait = function(question) {
   $('#questions').hide()
   $('#wait').show()
+  $('.progress').css('visibility', 'hidden')
   Cookies.set('quiz-'+question.id, 'true');
 }
 
 questionAlreadyAnswered = function(question) {
   return Cookies.get("quiz-"+question.id) != null;
+}
+
+countdown = function(callback, options) {
+  options = {}
+  options.countdown = 8;
+  var bar = $('#progress-bar'), time = 0, max = options.countdown,
+  int = setInterval(function() {
+      bar.width(100-Math.floor(100 * time++ / max) + '%')
+      if (time - 1 == max) {
+          clearInterval(int);
+          // 600ms - width animation time
+          callback && setTimeout(callback, 600);
+      }
+  }, 1000);
 }
