@@ -2,13 +2,15 @@ var ws;
 var question;
 var choice;
 
+
 $(function() {
-  console.log('trying to establish websocket connection');
+
+  console.log('trying to establish websocket connection')
   //TODO this will not work remote
-  //ws = new WebSocket('ws://localhost:8999');
-  ws = new WebSocket('ws://192.168.0.114:8999');
+  ws = new WebSocket('ws://localhost:8999');
+  //ws = new WebSocket('ws://192.168.0.114:8999')
   ws.onopen = function() {
-    console.log('successfully established websocket connection');
+    console.log('successfully established websocket connection')
   }
   ws.onmessage = function(msg) {
     question = JSON.parse(msg.data);
@@ -17,6 +19,11 @@ $(function() {
 });
 
 var renderQuestion = function(q) {
+  if( questionAlreadyAnswered(q) ) {
+    showWait(q)
+    return;
+  }
+  
   showQuestions()
   $('#question').html(q.question)
   var template = $('#choices-template').html();
@@ -51,7 +58,7 @@ var answer = function(element) {
 
   try {
     ws.send(JSON.stringify(answer))
-    showWait()
+    showWait(question)
     choice = undefined;
     question = undefined;
   } catch(err) { 
@@ -63,9 +70,16 @@ var answer = function(element) {
 var showQuestions = function() {
   $('#questions').show()
   $('#wait').hide()
+  //clean cookies to enable step back
+  Object.keys(Cookies.get()).forEach(function(k) {Cookies.remove(k)})
 }
 
 var showWait = function() {
   $('#questions').hide()
   $('#wait').show()
+  Cookies.set('quiz-'+question.id, 'true');
+}
+
+questionAlreadyAnswered = function(question) {
+  return Cookies.get("quiz-"+question.id) != null;
 }
