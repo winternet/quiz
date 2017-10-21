@@ -11,51 +11,50 @@
     <script src="/bootstrap/js/bootstrap.min.js"></script>
     <script src="/js/handlebars.min.js"></script>
     <script src="/js/js.cookie.js"></script>
-    <script src="/js/client.js"></script>
+    <script src="admin.js"></script>
   </head>
   <body>
     <div class="container text-center" style="background: lightgrey">
-      <h1>Quiz</h1>
-      <p>zum 60ten Geburtstag</p> 
-
-      <!-- progress bar -->
-      <div class="progress" style="visibility:hidden">
-        <div id="progress-bar" class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:100%"></div>
-      </div>
+      <h1>Administration</h1>
     </div>
 
-
-    <section id="questions" style="display:none">
-      <div class="text-center">
-        <h3 id="question" data-question-id>## Frage</h3>
-      </div>
+    <section id="controls" style="padding-top:20px">
       <div class="container">
-        <div class="quiz" id="choices" data-toggle="buttons">
-          <!-- render choices-templates -->
+        <div class="row">
+          <button onclick="prev()" style="width:48%" type="button" class="pull-left btn btn-lg btn-primary">Previous</button>
+          <button onclick="next()" style="width:48%" type="button" class="pull-right btn btn-lg btn-primary">Next</button>
         </div>
-      </div>
-      
-      <hr>
-
-      <div class="container">
-        <button type="button" class="btn btn-lg btn-primary btn-block" onclick="answer()">Abschicken</button>
+        <div class="row" style="padding-top:20px">
+          <button onclick="stats()" style="width:100%" type="button" class="pull-left btn btn-lg btn-primary">Statistics</button>
+        </div>
       </div>
     </section>
 
-
-    <section id="wait" class="text-center">
-      <h3>Die n&auml;chste Frage wird gleich freigeschaltet!</h3>
+    <!-- current question -->
+    <section>
+      <div class="text-center">
+        <h3 id="question">## Frage</h3>
+      </div>
+      <div class="container">
+        <div class="quiz" id="choices" data-toggle="buttons">
+          <!-- render choices template -->
+        </div>
+      </div>
     </section>
 
     <!-- choices-template -->
     <script id="choices-template" type="text/x-handlebars-template">
       {{#choices}}
           <label class="element-animation1 btn btn-lg btn-primary btn-block" onclick="choose(this)">
+            <!-- audio -->
+            {{#ifEqual . ../correct }}
+              <audio id="audio" src="/media/applause.opus" ></audio>
+            {{else}}
+              <audio id="audio" src="/media/zonk.m4a" ></audio>
+            {{/ifEqual}}
             <span class="btn-label"><i class="glyphicon glyphicon-asterisk"></i></span> 
             <input type="radio" name="choice" value="{{.}}"> 
-            <div class="choice_label">
-            {{.}}
-            </div>
+            <div class="choice_label"> {{.}} </div>
           </label>
       {{/choices}}
     </script>

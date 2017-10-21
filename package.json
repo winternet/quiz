@@ -10,7 +10,6 @@
     "bootstrap": "3.3.7",
     "express": "4.16.2",
     "jquery": "3.2.1",
-    "mustache": "2.3.0",
     "ws": "3.2.0",
     "basic-auth": "2.0.0"
   }

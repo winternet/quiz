@@ -28,11 +28,11 @@ var renderQuestion = function(q) {
   showQuestions(q)
   $('#question').html(q.question)
   var template = $('#choices-template').html();
-  var choices = Mustache.to_html(template, q);
+  var choices = Handlebars.compile(template)(q);
   $('#choices').html(choices);
 }
 
-var colorize = function(element) {
+var choose = function(element) {
   $('label.element-animation1').removeClass('btn-info')
   $(element).addClass('btn-info')
   choice = $(element).find('.choice_label').html()
@@ -85,7 +85,7 @@ var showWait = function(question) {
 }
 
 questionAlreadyAnswered = function(question) {
-  return Cookies.get("quiz-"+question.id) != null;
+  return false;//Cookies.get("quiz-"+question.id) != null;
 }
 
 countdown = function(callback, options) {

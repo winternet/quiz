@@ -16,6 +16,7 @@ app.use(express.static('public'))
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'))
 app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist/'))
 app.use('/mustache', express.static(__dirname + '/node_modules/mustache/'))
+app.use('/handlebars', express.static(__dirname + '/node_modules/handlebars/'))
 
 const wss = new WebSocket.Server( {port:8999} );
 
@@ -48,14 +49,19 @@ var broadcast = function() {
 
 app.get('/admin/next', function(req, res) {
   const n = game.next()
-  res.end("OK -\n" + JSON.stringify(n))
+  res.end(JSON.stringify(n))
   broadcast()
 })
 
 app.get('/admin/prev', function(req, res) {
   const p = game.prev()
-  res.end("OK -\n" + JSON.stringify(p))
+  res.end(JSON.stringify(p))
   broadcast()
+})
+
+app.get('/admin/current', function(req, res) {
+  const p = game.question()
+  res.end(JSON.stringify(p))
 })
 
 var server = app.listen(8080, function() {
