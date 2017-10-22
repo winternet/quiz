@@ -4,10 +4,14 @@ var fs = require('fs')
 var WebSocket = require('ws')
 var game = require('./game')
 
+var http = require('http')
+var https= require('https');
+
 var app = express()
 
 var answers = new Map()
 var answerPerClient = new Map()
+var clientsPerAnswer = new Map()
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -47,17 +51,14 @@ function needsLogin(req, res, next) {
   const [login, password] = new Buffer(b64auth, 'base64').toString().split(':')
 
   if(!login || !password || login !== auth.login || password !== auth.password) {
-    res.set('WWW-Authenticate', 'Basic realm="nope"')
-    res.status(401).send('Forbidden');
+    res.set('WWW-Authenticate', 'Basic realm="quiz"')
+    res.status(401).send('Forbidden').end()
   } else {
     next();
   }
 }
 
-app.all('/admin/*', needsLogin, function(req, res, next) {
-  //if(!isLoggedIn(req,res)) {
-  //  res.send("foooo");
-  //}
+app.use('/admin/*', needsLogin, function(req, res, next) {
   //--- pass control to next handler
   next()
 })
@@ -81,6 +82,7 @@ app.get('/admin/current', function(req, res) {
 
 app.post('/answer', function(req, res) {
   handleAnswer(req.body);
+  res.end()
 })
 
 app.get('/admin/stats/:index', function(req, res) {
@@ -99,10 +101,16 @@ app.get('/admin/stats/:index', function(req, res) {
     }, {});
   Object.keys(histogram).map(function(k) { return --histogram[k] })
   //---
+  
+  //--- map clients per answer to Object
+  var o = Object.create(null);
+  var clients = clientsPerAnswer.get(question.id);
+  if(clients != null) clients.forEach((v,k) => o[k] = v);
 
   res.json({
     question: question,
-    histogram: histogram
+    histogram: histogram,
+    users: o
   })
 })
 
@@ -123,7 +131,19 @@ function handleAnswer(answer) {
       answerPerClient.set(answer.client, answerMap);
     }
     answerMap.set(answer.id, answer.choice)
-    console.log(answerMap)
+
+    //--- add client per answer
+    if(clientsPerAnswer.has(answer.id)) {
+      answerMap = clientsPerAnswer.get(answer.id)
+    } else {
+      answerMap = new Map()
+    }
+    if(answerMap.has(answer.choice)) {
+      answerMap.get(answer.choice).push(answer.client)
+    } else {
+      answerMap.set(answer.choice, [answer.client])
+    }
+    clientsPerAnswer.set(answer.id, answerMap)
   }
 
   // if id already exists - push back
@@ -136,10 +156,12 @@ function handleAnswer(answer) {
   console.log((answers))
 }
 
-var server = app.listen(8080, function() {
+var privateKey = fs.readFileSync('ssl/server.key', 'utf8')
+var certificate = fs.readFileSync('ssl/server.cert', 'utf8')
+var credentials = {key: privateKey, cert: certificate};
 
-  var host = server.address().address
-  var port = server.address().port
+var httpServer = http.createServer(app)
+var httpsServer = https.createServer(credentials, app)
 
-  console.log('quit listening at http://%s:%s', host, port);
-});
+httpServer.listen(80);
+httpsServer.listen(443);

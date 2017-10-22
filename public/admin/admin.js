@@ -1,3 +1,4 @@
+const client = 'WERNER'
 var question;
 var MODE = {
   ANSWERING:{ value:0, name:'answering'},
@@ -6,8 +7,10 @@ var MODE = {
 
 var statsIndex = 0
 var mode = MODE.ANSWERING
+var chart
 
 function renderQuestion(data) {
+  $('#question').css('visibility', 'visible')
   question = (data);
   $('#question').html(question.question)
 
@@ -24,7 +27,6 @@ function getQuestion() {
 
 $(function() {
   console.log("initialize")
-  getQuestion();
 
   Handlebars.registerHelper('ifEqual', function(v1, v2, options) {
     if(v1 === v2) {
@@ -60,6 +62,8 @@ function prev() {
 }
 
 function stats() {
+  $('#mode_stats').addClass('btn-success')
+  $('#mode_answering').removeClass('btn-success')
   mode = MODE.STATS
   $.ajax("/admin/stats/"+statsIndex).done(function(data) {
     stat = (data);
@@ -69,6 +73,8 @@ function stats() {
 }
 
 function answering() {
+  $('#mode_answering').addClass('btn-success')
+  $('#mode_stats').removeClass('btn-success')
   $('#stats').hide()
   $('#answering').show()
   mode = MODE.ANSWERING
@@ -81,34 +87,39 @@ function renderStats(data) {
 
   const json = (data);
   var ctx = $("#chart").get(0).getContext('2d');
-  var chart = new Chart(ctx, {
+
+  var footerFunc = function(tooltipItems, data) {
+    if(tooltipItems.length<=0 || data.datasets.length <=0) return "";
+    let label = tooltipItems[0].xLabel
+    let clients = data.datasets[0].server.users[label]
+    if(clients != null )
+      return clients.filter((v, i, a) => a.indexOf(v) === i).join("\n")
+    return ""
+  }
+
+  if(chart != null) chart.destroy();
+
+  chart = new Chart(ctx, {
     type: 'bar',
     data: {
       labels: Object.keys(json.histogram),
       datasets: [{
+        server: json,
         label: 'Ergebnisse',
         data: Object.values(json.histogram),
-        backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)'
-        ],
-        borderColor: [
-          'rgba(255,99,132,1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)'
-        ],
+        backgroundColor: Object.keys(json.histogram).map(label => label === json.question.correct ? 'rgba(75, 192, 192, 0.8)' : 'rgba(54, 162, 235, 0.2)'),
         borderWidth: 1
       }]
     },
     options: {
       legend: { display: false },
+      tooltips: {
+        mode: 'index',
+        callbacks: {
+          // use footer callback to display the image
+          footer: footerFunc
+        }
+      },
       scales: {
         xAxes: [{
           ticks: {
@@ -134,7 +145,7 @@ function choose(element) {
   $.post('/answer', {
     id: question.id,
     choice: choice,
-    client: 'ADMIN'
+    client: client
   });
   // play sound
   const audio = $(element).find('audio')[0];

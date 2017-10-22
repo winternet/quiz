@@ -26,8 +26,8 @@
           <button onclick="next()" style="width:48%" type="button" class="pull-right btn btn-lg btn-primary">Next</button>
         </div>
         <div class="row container" style="padding-top:20px">
-          <button onclick="answering()" style="width:100%" type="button" class="pull-left btn btn-lg btn-primary">Answering</button>
-          <button onclick="stats()" style="width:100%; margin-top:10px" type="button" class="pull-left btn btn-lg btn-primary">Statistics</button>
+          <button id="mode_answering" type="radio" onclick="answering()" style="width:100%" class="pull-left btn btn-lg btn-primary">Answering</button>
+          <button id="mode_stats" type="radio" onclick="stats()" style="width:100%; margin-top:10px" class="pull-left btn btn-lg btn-primary">Statistics</button>
         </div>
       </div>
     </section>
@@ -35,7 +35,7 @@
     <!-- current question -->
     <section>
       <div class="text-center">
-        <h3 id="question">## Frage</h3>
+        <h3 id="question">In order to start the game, press Next.</h3>
       </div>
       <div id="answering" class="container">
         <div class="quiz" id="choices" data-toggle="buttons">

@@ -5,11 +5,9 @@ var options;
 
 $(function() {
   console.log('trying to get options...')
-  $.ajax({})
   console.log('trying to establish websocket connection...')
   //TODO this will not work remote
-  ws = new WebSocket('ws://localhost:8999');
-  //ws = new WebSocket('ws://192.168.0.114:8999')
+  ws = new WebSocket('ws://localhost.localdomain:8999');
   ws.onopen = function() {
     console.log('successfully established websocket connection')
   }
@@ -50,7 +48,7 @@ function choose(element) {
 function answer() {
   if(choice == null) {
     //--- no answer given
-    showWait()
+    showWait(question)
     return
   }
 
