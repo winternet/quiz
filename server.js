@@ -21,8 +21,9 @@ app.use('/handlebars', express.static(__dirname + '/node_modules/handlebars/'))
 const wss = new WebSocket.Server( {port:8999} );
 
 wss.on('connection', function(ws) {
-  // send the question
-  ws.send(JSON.stringify(game.question()))
+  // send the question initially if game started
+  if(game.question() != null)
+    ws.send(JSON.stringify(game.question()))
 
   ws.on('message', function(msg) {
     const answer = JSON.parse(msg);
@@ -63,19 +64,19 @@ app.all('/admin/*', needsLogin, function(req, res, next) {
 
 app.get('/admin/next', function(req, res) {
   const n = game.next()
-  res.end(JSON.stringify(n))
+  res.json(n)
   broadcast()
 })
 
 app.get('/admin/prev', function(req, res) {
   const p = game.prev()
-  res.end(JSON.stringify(p))
+  res.json(p)
   broadcast()
 })
 
 app.get('/admin/current', function(req, res) {
   const p = game.question()
-  res.end(JSON.stringify(p))
+  res.json(p)
 })
 
 app.post('/answer', function(req, res) {
@@ -99,10 +100,10 @@ app.get('/admin/stats/:index', function(req, res) {
   Object.keys(histogram).map(function(k) { return --histogram[k] })
   //---
 
-  res.end(JSON.stringify({
+  res.json({
     question: question,
     histogram: histogram
-  }))
+  })
 })
 
 function handleAnswer(answer) {

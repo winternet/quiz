@@ -8,7 +8,7 @@ var statsIndex = 0
 var mode = MODE.ANSWERING
 
 function renderQuestion(data) {
-  question = JSON.parse(data);
+  question = (data);
   $('#question').html(question.question)
 
   var template = $('#choices-template').html();
@@ -62,7 +62,7 @@ function prev() {
 function stats() {
   mode = MODE.STATS
   $.ajax("/admin/stats/"+statsIndex).done(function(data) {
-    stat = JSON.parse(data);
+    stat = (data);
     $('#question').html(stat.question.question)
     renderStats(data)
   })
@@ -79,7 +79,7 @@ function renderStats(data) {
   $('#answering').hide();
   $('#stats').show();
 
-  const json = JSON.parse(data);
+  const json = (data);
   var ctx = $("#chart").get(0).getContext('2d');
   var chart = new Chart(ctx, {
     type: 'bar',
@@ -135,8 +135,6 @@ function choose(element) {
     id: question.id,
     choice: choice,
     client: 'ADMIN'
-  }).done(function() {
-    alert('done')
   });
   // play sound
   const audio = $(element).find('audio')[0];

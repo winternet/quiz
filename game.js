@@ -2,7 +2,7 @@ var fs = require('fs')
 var filename = 'game.json'
 
 var hasStarted = false;
-var step = 0
+var step = -1
 var game = undefined
 
 fs.readFile( __dirname + '/' + filename, 'utf8', function(err, data) {
@@ -22,6 +22,9 @@ fs.readFile( __dirname + '/' + filename, 'utf8', function(err, data) {
 
 exports.question = function() {
   console.log(game.questions);
+
+  if(step < 0) return undefined
+
   var q = game.questions[step];
   return q;
 }
