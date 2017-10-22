@@ -32,13 +32,34 @@ wss.on('connection', function(ws) {
   })
 })
 
-var broadcast = function() {
+function broadcast() {
   wss.clients.forEach(function(client) {
     if(client !== wss && client.readyState === WebSocket.OPEN) {
       client.send(JSON.stringify(game.question()));
     }
   })
 }
+
+function needsLogin(req, res, next) {
+  const auth = { login: 'admin', password: 'secret' }
+  const b64auth = (req.headers.authorization || '').split(' ')[1] || ''
+  const [login, password] = new Buffer(b64auth, 'base64').toString().split(':')
+
+  if(!login || !password || login !== auth.login || password !== auth.password) {
+    res.set('WWW-Authenticate', 'Basic realm="nope"')
+    res.status(401).send('Forbidden');
+  } else {
+    next();
+  }
+}
+
+app.all('/admin/*', needsLogin, function(req, res, next) {
+  //if(!isLoggedIn(req,res)) {
+  //  res.send("foooo");
+  //}
+  //--- pass control to next handler
+  next()
+})
 
 app.get('/admin/next', function(req, res) {
   const n = game.next()

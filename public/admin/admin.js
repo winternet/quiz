@@ -69,9 +69,10 @@ function stats() {
 }
 
 function answering() {
-  $('#stats').hide();
-  $('#answering').show();
+  $('#stats').hide()
+  $('#answering').show()
   mode = MODE.ANSWERING
+  getQuestion()
 }
 
 function renderStats(data) {

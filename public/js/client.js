@@ -14,12 +14,20 @@ $(function() {
     console.log('successfully established websocket connection')
   }
   ws.onmessage = function(msg) {
-    question = JSON.parse(msg.data);
-    renderQuestion(question);
+    question = JSON.parse(msg.data)
+    renderQuestion(question)
   }
+  console.log('trying to prohibit auto-sleep')
+  // note that this is an ugly hack
+  // that shouldn't be used, however
+  // playing videos in the background
+  // is the only solution to prohibit
+  // auto-sleep
+  const nosleep = new NoSleep()
+  nosleep.enable()
 });
 
-var renderQuestion = function(q) {
+function renderQuestion(q) {
   if( questionAlreadyAnswered(q) ) {
     showWait(q)
     return;
@@ -32,17 +40,18 @@ var renderQuestion = function(q) {
   $('#choices').html(choices);
 }
 
-var choose = function(element) {
+function choose(element) {
   $('label.element-animation1').removeClass('btn-info')
   $(element).addClass('btn-info')
   choice = $(element).find('.choice_label').html()
   choice = $.trim(choice)
 }
 
-var answer = function(element) {
+function answer() {
   if(choice == null) {
-    alert('Bitte wählen Sie eine Antwort aus, indem Sie auf Sie klicken')
-    return;
+    //--- no answer given
+    showWait()
+    return
   }
 
   if(question == null) {
@@ -68,27 +77,27 @@ var answer = function(element) {
   }
 }
 
-var showQuestions = function(question) {
+function showQuestions(question) {
   $('#questions').show()
   $('#wait').hide()
   $('.progress').css('visibility', 'visible')
   //clean cookies to enable step back
   Object.keys(Cookies.get()).forEach(function(k) {Cookies.remove(k)})
-  countdown(showWait.bind(null, question), options)
+  countdown(answer, options)
 }
 
-var showWait = function(question) {
+function showWait(question) {
   $('#questions').hide()
   $('#wait').show()
   $('.progress').css('visibility', 'hidden')
   Cookies.set('quiz-'+question.id, 'true');
 }
 
-questionAlreadyAnswered = function(question) {
+function questionAlreadyAnswered(question) {
   return false;//Cookies.get("quiz-"+question.id) != null;
 }
 
-countdown = function(callback, options) {
+function countdown(callback, options) {
   options = {}
   options.countdown = 8;
   var bar = $('#progress-bar'), time = 0, max = options.countdown,
