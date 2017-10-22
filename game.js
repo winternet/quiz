@@ -43,3 +43,16 @@ exports.prev = function() {
   --step
   return exports.question()
 }
+
+function outsideIndex(index) {
+  return index >= game.questions.length-1
+}
+exports.index = function(index) {
+  //TODO handle empty questions
+  if(outsideIndex(index))
+    return game.questions[game.questions.length-1]
+  else if(index < 0)
+    return game.questions[0]
+
+  return game.questions[index]
+}
