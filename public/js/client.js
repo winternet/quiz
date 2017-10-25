@@ -6,8 +6,9 @@ var options;
 $(function() {
   console.log('trying to get options...')
   console.log('trying to establish websocket connection...')
+
   //TODO this will not work remote
-  ws = new WebSocket('ws://localhost.localdomain:8999');
+  ws = new WebSocket('ws://'+window.location.host+':8999');
   ws.onopen = function() {
     console.log('successfully established websocket connection')
   }
@@ -88,11 +89,12 @@ function showWait(question) {
   $('#questions').hide()
   $('#wait').show()
   $('.progress').css('visibility', 'hidden')
-  Cookies.set('quiz-'+question.id, 'true');
+  if(question != null && question.id != null)
+    Cookies.set('quiz-'+question.id, 'true');
 }
 
 function questionAlreadyAnswered(question) {
-  return false;//Cookies.get("quiz-"+question.id) != null;
+  return Cookies.get("quiz-"+question.id) != null;
 }
 
 function countdown(callback, options) {
