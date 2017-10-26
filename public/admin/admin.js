@@ -12,6 +12,10 @@ var chart
 function renderQuestion(data) {
   $('#question').css('visibility', 'visible')
   question = (data);
+  if(question == null) {
+    $('#question').html("No question selected.")
+    return
+  }
   $('#question').html(question.question)
 
   var template = $('#choices-template').html();
@@ -22,6 +26,9 @@ function renderQuestion(data) {
 function getQuestion() {
   $.ajax("/admin/current").done(function(data) {
     renderQuestion(data);
+  }).fail(function(data) {
+    renderQuestion();
+    console.log('Failed to get current question' + JSON.stringify(data));
   })
 }
 
