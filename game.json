@@ -2,21 +2,115 @@
   "options": {},
   "questions": [
     {
-      "id":"FRAGE1",
-      "question":"Wann war die erste Mondlandung?",
+      "id":"1",
+      "question":"Wer verbirgt sich hinter den Fab Four?",
       "choices": [
-        "foo", "bar", "foobar", "42"
+        "ABBA", "The Beatles", "Led Zeppelin"
       ],
-      "correct":"42"
+      "correct":"The Beatles"
     },
     {
-      "id":"FRAGE2",
-      "question":"Wann war die erste Mondlandung? - Teil 2",
+      "id":"2",
+      "question":"Was war der erste Song der Beatles?",
       "choices": [
-        "foo", "bar", "foobar", "42"
+        "Here Comes The Sun", "Yesterday", "Love Me Do"
       ],
-      "correct":"42"
+      "correct":"Love Me Do"
+    },
+    {
+      "id":"3",
+      "question":"Wer moderierte die im ZDF ausgestrahlte Musiksendung 'Disco'?",
+      "choices": [
+        "Ilja Richter", "Gabi Bauer", "Frank Elstner"
+      ],
+      "correct":"Ilja Richter"
+    },
+    {
+      "id":"4",
+      "question":"Wie moderierte Ilja Richter den nächsten Song an?",
+      "choices": [
+        "Auf Los geht's los!", "Bühne frei!", "Licht aus, Spot an!"
+      ],
+      "correct":"Licht aus, Spot an!"
+    },
+    {
+      "id":"5",
+      "question":"In welchem Jahr gewann Nicole den Eurovision Song Contest?",
+      "choices": [
+        "1979", "1982", "1988"
+      ],
+      "correct":"1982"
+    },
+    {
+      "id":"6",
+      "question":"Wie hieß der erste Tierarzt in der ZDF Serie 'Unser Charly'?",
+      "choices": [
+        "Dr. Philipp Martin", "Dr Max Henning", "Dr. Jens Lennart"
+      ],
+      "correct":"Dr. Philipp Martin"
+    },
+    {
+      "id":"7",
+      "question":"Wie heißt eine aufstrebende Band aus dem Landkreis Amberg-Sulzbach?",
+      "choices": [
+        "Die Drei Lustigen Zwoa", "Die Knödlrocker", "Die Pfiffigen Knepf"
+      ],
+      "correct":"Die Pfiffigen Knepf"
+    },
+    {
+      "id":"MUF_GAME_OF_THRONES_2016",
+      "question":"Wie lautet der Spruch der Familie Stark aus der Serie 'Game of Thrones'",
+      "choices": [
+        "Der Winter naht", "Was tot ist kann niemals sterben", "Ein Stark zahlt seine Schulden immer zurück"
+      ],
+      "correct":"Der Winter naht"
+    },
+    {
+      "id":"SKUR_Black_Monday",
+      "question":"Was geschah am 'Schwarzen Montag' im Jahr 1987",
+      "choices": [
+        "Börsencrash", "Blackout", "TV kein Empfang"
+      ],
+      "correct":"Börsencrash"
+    },
+
+    {
+      "id":"SKUR_Werner_Comic",
+      "question":"Wer ist Werners Bruder im gleichnamigen Comic von Rötger Feldmann (Brösel)?",
+      "choices": [
+        "Andi", "Röhrich", "Eckhard"
+      ],
+      "correct":"Andi"
+    },
+    {
+      "id":"SKUR_Knoedelkrieg",
+      "question":"Welche Waffe nutzte der Rebel Helmut Winter um gegen den Fluglärm am Fliegerhorst Fürstenfeldbruck vorzugehen?",
+      "choices": [
+        "Laserpointer+Stroboskop", "Katapult+bayer. Knödel", "2000Watt Lautsprecher"
+      ],
+      "correct":"Katapult+bayer. Knödel"
+    },
+    {
+      "id":"SKUR_Black_Monday",
+      "question":"Was geschah am 'Schwarzen Montag' im Jahr 1987",
+      "choices": [
+        "Börsencrash", "Blackout", "TV kein Empfang"
+      ],
+      "correct":"Börsencrash"
+    },
+
+
+
+
+    {
+      "id":"WT_ISS",
+      "question":"Wann wurde mit dem Bau der ISS begonnen?",
+      "choices": [
+        "0-5", "5-10", "10-15"
+      ],
+      "correct":"10-15"
     }
+
   ],
   "outro": {
     
