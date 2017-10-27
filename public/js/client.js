@@ -99,7 +99,7 @@ function questionAlreadyAnswered(question) {
 
 function countdown(callback, options) {
   options = {}
-  options.countdown = 8;
+  options.countdown = 15;
   var bar = $('#progress-bar'), time = 0, max = options.countdown,
   int = setInterval(function() {
       bar.width(100-Math.floor(100 * time++ / max) + '%')
