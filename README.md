@@ -13,13 +13,10 @@ Enter the questions in the given format under ```game.json```. Bootup the server
 
 The credentials are *admin*/*secret* by default and can be configured within server.js
 
-### HTTPS
+### Ports / HTTPS
 
-If https protocol is needed the server certificate and server key need to be placed under ```/ssl/server.key``` and ```ssl/server.cert```. If not needed comment the https protocol in server.js
+Ports are 8080 and 8443 by default. If https protocol is needed the server certificate and server key need to be placed under ```/ssl/server.key``` and ```ssl/server.cert```, otherwise comment the https protocol in server.js
 
-### Ports
-
-Ports are 8080 and 8443 by default, configure them within server.js
 
 ### Cookies and Timeouts
 
@@ -27,4 +24,4 @@ To prohibit the clients from choosing more than once, a client cookie will be se
 
 ### Screen-Lock
 
-To prohibit activation of the screen lock, the client.js uses a dirty hack called [NoSleep.js](https://github.com/richtr/NoSleep.js) that can be found on github.
+To prohibit activation of the screen lock, the client.js uses a dirty hack called [NoSleep.js](https://github.com/richtr/NoSleep.js).
