@@ -1,12 +1,12 @@
 # Quiz
+
 The quiz is made for mobile devices as clients. Select the next question using a simplistic admin ui that also renders crude bar charts of the answers' distribution. To bootup the quiz as fast as possible, a captive portal could be used to direct the clients to the quiz.
 
 ![quiz-unselected](https://raw.githubusercontent.com/winternet/quiz/master/pics/quiz.png)
 ![quiz-selected](https://raw.githubusercontent.com/winternet/quiz/master/pics/quiz-selected.png)
-![quiz-admin](https://raw.githubusercontent.com/winternet/quiz/master/pics/quiz-admin.png)
-![quiz-stats](https://raw.githubusercontent.com/winternet/quiz/master/pics/quiz-stats.png)
 
 ## Pre-requisites
+
 The quiz is based on node.js (```apt-get install nodejs```).
 To install all dependencies browse to the project folder and issue ```npm install```. See ```package.json``` for the dependencies.
 
@@ -30,3 +30,8 @@ To prohibit the clients from choosing more than once, a client cookie will be se
 ### Screen-Lock
 
 To prohibit activation of the screen lock, the client.js uses a dirty hack called [NoSleep.js](https://github.com/richtr/NoSleep.js).
+
+## Admin UI
+
+![quiz-admin](https://raw.githubusercontent.com/winternet/quiz/master/pics/quiz-admin.png)
+![quiz-stats](https://raw.githubusercontent.com/winternet/quiz/master/pics/quiz-stats.png)
