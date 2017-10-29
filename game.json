@@ -2,7 +2,15 @@
   "options": {},
   "questions": [
     {
-      "id":"1",
+      "id":"INTRO",
+      "question":"Wie lautet die PLZ von Sulzbach-Rosenberg?",
+      "choices": [
+         "92285", "93357","92237"
+      ],
+      "correct":"92237"
+    },
+    {
+      "id":"MUF_FAB_FOUR",
       "question":"Wer verbirgt sich hinter den Fab Four?",
       "choices": [
         "ABBA", "The Beatles", "Led Zeppelin"
@@ -10,7 +18,7 @@
       "correct":"The Beatles"
     },
     {
-      "id":"2",
+      "id":"MUF_BEATLES_FIRST",
       "question":"Was war der erste Song der Beatles?",
       "choices": [
         "Here Comes The Sun", "Yesterday", "Love Me Do"
@@ -18,7 +26,7 @@
       "correct":"Love Me Do"
     },
     {
-      "id":"3",
+      "id":"MUF_DISCO",
       "question":"Wer moderierte die im ZDF ausgestrahlte Musiksendung 'Disco'?",
       "choices": [
         "Ilja Richter", "Gabi Bauer", "Frank Elstner"
@@ -26,7 +34,7 @@
       "correct":"Ilja Richter"
     },
     {
-      "id":"4",
+      "id":"MUF_MODERATION",
       "question":"Wie moderierte Ilja Richter den nächsten Song an?",
       "choices": [
         "Auf Los geht's los!", "Bühne frei!", "Licht aus, Spot an!"
@@ -34,7 +42,7 @@
       "correct":"Licht aus, Spot an!"
     },
     {
-      "id":"5",
+      "id":"MUF_ESC",
       "question":"In welchem Jahr gewann Nicole den Eurovision Song Contest?",
       "choices": [
         "1979", "1982", "1988"
@@ -42,15 +50,7 @@
       "correct":"1982"
     },
     {
-      "id":"6",
-      "question":"Wie hieß der erste Tierarzt in der ZDF Serie 'Unser Charly'?",
-      "choices": [
-        "Dr. Philipp Martin", "Dr Max Henning", "Dr. Jens Lennart"
-      ],
-      "correct":"Dr. Philipp Martin"
-    },
-    {
-      "id":"7",
+      "id":"MUF_KNEPF",
       "question":"Wie heißt eine aufstrebende Band aus dem Landkreis Amberg-Sulzbach?",
       "choices": [
         "Die Drei Lustigen Zwoa", "Die Knödlrocker", "Die Pfiffigen Knepf"
@@ -58,61 +58,101 @@
       "correct":"Die Pfiffigen Knepf"
     },
     {
-      "id":"MUF_GAME_OF_THRONES_2016",
-      "question":"Wie lautet der Spruch der Familie Stark aus der Serie 'Game of Thrones'",
+      "id":"MUF_INSTRUMENTE",
+      "question":"Wie viele Musikinstrumente befinden sich im Besitz der Fam. Winter?",
       "choices": [
-        "Der Winter naht", "Was tot ist kann niemals sterben", "Ein Stark zahlt seine Schulden immer zurück"
+        "0-10", "10-20", "20+"
       ],
-      "correct":"Der Winter naht"
-    },
-    {
-      "id":"SKUR_Black_Monday",
-      "question":"Was geschah am 'Schwarzen Montag' im Jahr 1987",
-      "choices": [
-        "Börsencrash", "Blackout", "TV kein Empfang"
-      ],
-      "correct":"Börsencrash"
-    },
-
-    {
-      "id":"SKUR_Werner_Comic",
-      "question":"Wer ist Werners Bruder im gleichnamigen Comic von Rötger Feldmann (Brösel)?",
-      "choices": [
-        "Andi", "Röhrich", "Eckhard"
-      ],
-      "correct":"Andi"
-    },
-    {
-      "id":"SKUR_Knoedelkrieg",
-      "question":"Welche Waffe nutzte der Rebel Helmut Winter um gegen den Fluglärm am Fliegerhorst Fürstenfeldbruck vorzugehen?",
-      "choices": [
-        "Laserpointer+Stroboskop", "Katapult+bayer. Knödel", "2000Watt Lautsprecher"
-      ],
-      "correct":"Katapult+bayer. Knödel"
-    },
-    {
-      "id":"SKUR_Black_Monday",
-      "question":"Was geschah am 'Schwarzen Montag' im Jahr 1987",
-      "choices": [
-        "Börsencrash", "Blackout", "TV kein Empfang"
-      ],
-      "correct":"Börsencrash"
+      "correct":"20+"
     },
 
 
 
+    {
+      "id":"WT_RAUMFAHRT",
+      "question":"Welches Ereignis leitet 1957 das Zeitalter der Raumfahrt ein?",
+      "choices": [
+        "Sputnik-Programm", "Pioneer-Programm", "Apollo-Programm"
+      ],
+      "correct":"Sputnik-Programm"
+    },
+    {
+      "id":"WT_SPACE_X",
+      "question":"Wer ist der Geschäftsführer von SpaceX?",
+      "choices": [
+        "Bill Gates", "Werner Winter", "Elon Musk"
+      ],
+      "correct":"Elon Musk"
+    },
+    {
+      "id":"WT_IPHONE",
+      "question":"Wann kam das Apple iPhone auf den Markt?",
+      "choices": [
+        "2007", "2009", "2011"
+      ],
+      "correct":"2007"
+    },
+    {
+      "id":"WT_PC",
+      "question":"Wie hieß der erste PC mit Tastatur und Bildschirm?",
+      "choices": [
+        "Apple I", "Commodore PET", "Tandy TRS-80 Model 1"
+      ],
+      "correct":"Apple I"
+    },
+
+
+
 
     {
-      "id":"WT_ISS",
-      "question":"Wann wurde mit dem Bau der ISS begonnen?",
+      "id":"SP_SKI_WM",
+      "question":"Wo fanden bisher die meisten alpinen Ski-WMs statt?",
       "choices": [
-        "0-5", "5-10", "10-15"
+        "Innsbruck", "Cortina d'Ampezzo", "St. Moritz"
       ],
-      "correct":"10-15"
+      "correct":"St. Moritz"
+    },
+    {
+      "id":"SP_AELTEST",
+      "question":"Wie alt ist der älteste Sportler und welche Sportart übt er aus?",
+      "choices": [
+        "105, 100m Lauf", "100, 1500m Freistil", "101, Marathon"
+      ],
+      "correct":"105, 100m Lauf"
+    },
+    {
+      "id":"SP_STRECKENREKORD",
+      "question":"Der aktuelle Streckenrekord im Gleitschirmfliegen liegt bei?",
+      "choices": [
+        "122.9 km", "564.3 km", "2733.1 km"
+      ],
+      "correct":"564.3 km"
+    },
+    {
+      "id":"SP_FALLSCHIRM",
+      "question":"Aus welcher Höhe absolvierte Alan Eustace 2014 seinen Fallschirmsprung?",
+      "choices": [
+        "38.969,4m", "41.419,0m", "23.205,5m"
+      ],
+      "correct":"41.419,0m"
+    },
+
+
+    {
+      "id":"SKUR_GIPFEL",
+      "question":"Welcher Gipfel wurde 1957 abgehalten?",
+      "choices": [
+        "Atomwaffengipfel", "Mafiagipfel", "Musikergipfel"
+      ],
+      "correct":"Mafiagipfel"
+    },
+    {
+      "id":"SKUR_MASS",
+      "question":"Der Preis in Cent für eine Maß am Oktoberfest stieg seit 1957 um",
+      "choices": [
+        "158 %", "10158 %", "1158 %"
+      ],
+      "correct":"1158 %"
     }
-
-  ],
-  "outro": {
-    
-  }
+  ]
 }
