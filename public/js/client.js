@@ -8,7 +8,7 @@ $(function() {
   console.log('trying to establish websocket connection...')
 
   //TODO this will not work remote
-  ws = new WebSocket('ws://'+window.location.host+':8999');
+  ws = new WebSocket('ws://'+window.location.host.split(':')[0]+':8999');
   ws.onopen = function() {
     console.log('successfully established websocket connection')
   }
