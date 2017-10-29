@@ -33,5 +33,7 @@ To prohibit activation of the screen lock, the client.js uses a dirty hack calle
 
 ## Admin UI
 
+### Questions
 ![quiz-admin](https://raw.githubusercontent.com/winternet/quiz/master/pics/quiz-admin.png)
+### Statistics
 ![quiz-stats](https://raw.githubusercontent.com/winternet/quiz/master/pics/quiz-stats.png)
