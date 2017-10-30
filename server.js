@@ -156,12 +156,12 @@ function handleAnswer(answer) {
   console.log((answers))
 }
 
-var privateKey = fs.readFileSync('ssl/server.key', 'utf8')
-var certificate = fs.readFileSync('ssl/server.cert', 'utf8')
-var credentials = {key: privateKey, cert: certificate};
+//var privateKey = fs.readFileSync('ssl/server.key', 'utf8')
+//var certificate = fs.readFileSync('ssl/server.cert', 'utf8')
+//var credentials = {key: privateKey, cert: certificate};
 
 var httpServer = http.createServer(app)
-var httpsServer = https.createServer(credentials, app)
+//var httpsServer = https.createServer(credentials, app)
 
 httpServer.listen(8080);
-httpsServer.listen(8443);
+//httpsServer.listen(8443);
