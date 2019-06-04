@@ -1,5 +1,7 @@
 # Quiz
 
+**Please note that this project is no longer maintained.**
+
 The quiz is made for mobile devices as clients. Select the next question using a simplistic admin ui that also renders crude bar charts of the answers' distribution. To bootup the quiz as fast as possible, a captive portal could be used to direct the clients to the quiz.
 
 ![quiz-unselected](https://raw.githubusercontent.com/winternet/quiz/master/pics/quiz.png)
